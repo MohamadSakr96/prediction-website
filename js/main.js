@@ -1,3 +1,5 @@
+var data_array = [];
+
 
 // dog image
 let dog_img_url = "https://dog.ceo/api/breeds/image/random";
@@ -29,18 +31,25 @@ function createURL() {
     let country_url = ` https://api.nationalize.io/?name=${var_name}`;
 
     // Promises way of doing things "promise chain"
-    fetchData(gender_url).then(
-        () => fetchData(age_url)
+    fetchData(gender_url, "gender").then(
+        () => fetchData(age_url, "age")
     ).then(
-        () => fetchData(country_url)
+        () => fetchData(country_url, "country")
+    ).then(
+        () => renderData()
     );
 }
 
 // async await (best way of doing it?)
-async function fetchData(url) {
+async function fetchData(url, data_type) {
     let result = await fetch(url);
     let data = await result.json();
-    return data;
+    data_array.push(data[data_type]);
+}
+
+
+function renderData() {
+    console.log(data_array);
 }
 
 
