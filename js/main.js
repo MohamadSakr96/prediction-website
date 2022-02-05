@@ -56,7 +56,7 @@ async function fetchData(url, data_type) {
 
 
 function renderData() {
-    console.log(data_array);
+    
     if (render_index === 0){
         document.body.innerHTML += `
             <div id="elements" class="container data-container">
@@ -83,13 +83,8 @@ function renderData() {
         }
     );
     render_index ++;
-    resetData();
-}
-
-
-function resetData() {
     data_array = [];
-    console.log(data_array);
 }
+
 
 

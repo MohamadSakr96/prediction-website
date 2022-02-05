@@ -46,10 +46,23 @@ img {
 	margin: 1rem 0;
 }
 
+.title-container {
+	border-bottom: 2px solid var(--color-light);
+	padding-bottom: 1rem;
+	font-size: large;
+	font-weight: bold;
+}
+
 .title {
 	flex: 3;
 }
 
 .element {
 	flex: 1;
+}
+
+@media screen and (max-width: 798px) {
+	.container {
+		margin: 2rem 0;
+	}
 }
