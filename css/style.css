@@ -1,0 +1,11 @@
+:root {
+	/* colors to use */
+	--color-bg: #2f3061;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	background-color: var(--color-bg);
+}
