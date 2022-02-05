@@ -27,5 +27,6 @@ body {
 
 img {
 	border-radius: 20px;
-	width: min(75%, 400px);
+	width: max(50%, 300px);
+	aspect-ratio: 1;
 }

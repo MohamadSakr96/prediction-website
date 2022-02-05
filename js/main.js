@@ -1,6 +1,21 @@
 
 // dog image
 let dog_img_url = "https://dog.ceo/api/breeds/image/random";
+// async await (for the dog image)
+async function fetchImage(url) {
+    let result = await fetch(url);
+    let data = await result.json();
+    if (data.status === 'success') {
+        document.getElementById("image").src = `${data.message}`;
+    }else {
+        console.log("Failed to load image!");
+    }
+}
+
+fetchImage(dog_img_url);
+
+
+
 
 
 document.getElementById("submit").addEventListener("click", createURL);
@@ -8,7 +23,7 @@ document.getElementById("submit").addEventListener("click", createURL);
 
 function createURL() {
     let var_name = document.getElementById("name").value;
-    
+
     let gender_url = ` https://api.genderize.io?name=${var_name}`;
     let age_url = ` https://api.agify.io/?name=${var_name}`;
     let country_url = ` https://api.nationalize.io/?name=${var_name}`;
@@ -25,5 +40,8 @@ function createURL() {
 async function fetchData(url) {
     let result = await fetch(url);
     let data = await result.json();
-    console.log(data);
+    return data;
 }
+
+
+
