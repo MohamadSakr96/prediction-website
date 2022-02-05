@@ -1,11 +1,31 @@
 :root {
 	/* colors to use */
-	--color-bg: #2f3061;
+	--color-dark: #2f3061;
+	--color-light: #6ca6c1;
+	--color-white: #f7fff7;
+	--color-black: #343434;
+	--color-yellow: #ffe66d;
 }
 
 body {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	background-color: var(--color-bg);
+	background-color: var(--color-dark);
+	color: var(--color-black);
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+	background-color: var(--color-white);
+	margin: 4rem 25%;
+	padding: 4rem 0;
+	border-radius: 20px;
+	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+img {
+	border-radius: 20px;
+	width: min(75%, 400px);
 }
