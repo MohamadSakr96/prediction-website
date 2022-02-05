@@ -17,14 +17,14 @@ async function fetchImage(url) {
 fetchImage(dog_img_url);
 
 
-
-
-
 document.getElementById("submit").addEventListener("click", createURL);
 
 
 function createURL() {
     let var_name = document.getElementById("name").value;
+    console.log(data_array, "when clicked");
+    data_array.push(var_name);
+    console.log(data_array, "after pushing the new name");
 
     let gender_url = ` https://api.genderize.io?name=${var_name}`;
     let age_url = ` https://api.agify.io/?name=${var_name}`;
@@ -44,13 +44,38 @@ function createURL() {
 async function fetchData(url, data_type) {
     let result = await fetch(url);
     let data = await result.json();
-    data_array.push(data[data_type]);
+    
+    if (typeof(data[data_type]) === "object") {
+        for (let i in data[data_type]) {
+            data_array.push(data[data_type][i][`${data_type}_id`]);
+        }
+    }else {
+        data_array.push(data[data_type]);
+    }
 }
 
 
 function renderData() {
     console.log(data_array);
+    document.body.innerHTML += `
+        <div id="elements" class="container">
+            
+        </div>
+    `;
+    data_array.forEach(
+        (element) => { 
+            document.getElementById("elements").innerHTML += `
+                <div class="element"> ${element} </div>
+            `;
+        }
+    );
+    resetData();
 }
 
+
+function resetData() {
+    data_array = [];
+
+}
 
 
