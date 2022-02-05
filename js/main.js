@@ -1,4 +1,5 @@
 var data_array = [];
+var render_index = 0;
 
 
 // dog image
@@ -16,15 +17,14 @@ async function fetchImage(url) {
 }
 fetchImage(dog_img_url);
 
-
-document.getElementById("submit").addEventListener("click", createURL);
+document.body.addEventListener("mouseenter", () => {
+    document.getElementById("submit").addEventListener("click", createURL);
+});
 
 
 function createURL() {
     let var_name = document.getElementById("name").value;
-    console.log(data_array, "when clicked");
     data_array.push(var_name);
-    console.log(data_array, "after pushing the new name");
 
     let gender_url = ` https://api.genderize.io?name=${var_name}`;
     let age_url = ` https://api.agify.io/?name=${var_name}`;
@@ -57,25 +57,39 @@ async function fetchData(url, data_type) {
 
 function renderData() {
     console.log(data_array);
-    document.body.innerHTML += `
-        <div id="elements" class="container">
+    if (render_index === 0){
+        document.body.innerHTML += `
+            <div id="elements" class="container data-container">
+                <div class="elements title-container">
+                    <div class="element">Name</div>
+                    <div class="element">Gender</div>
+                    <div class="element">Age</div>
+                    <div class="title">Nationality</div>
+                </div>
+            </div>
+        `;
+    }
+    document.getElementById(`elements`).innerHTML += `
+        <div id="elements_${render_index}" class="elements">
             
         </div>
     `;
+
     data_array.forEach(
         (element) => { 
-            document.getElementById("elements").innerHTML += `
+            document.getElementById(`elements_${render_index}`).innerHTML += `
                 <div class="element"> ${element} </div>
             `;
         }
     );
+    render_index ++;
     resetData();
 }
 
 
 function resetData() {
     data_array = [];
-
+    console.log(data_array);
 }
 
 

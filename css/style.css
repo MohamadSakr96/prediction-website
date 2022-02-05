@@ -19,7 +19,7 @@ body {
 
 .container {
 	background-color: var(--color-white);
-	margin: 4rem 25%;
+	margin: 2rem 25%;
 	padding: 4rem 0;
 	border-radius: 20px;
 	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
@@ -31,4 +31,25 @@ body {
 img {
 	border-radius: 20px;
 	width: clamp(200px, 70%, 400px);
+}
+
+.data-container {
+	flex-direction: column;
+	padding: 2rem 0;
+}
+
+.elements {
+	display: flex;
+	width: 100%;
+	justify-content: flex-start;
+	align-items: center;
+	margin: 1rem 0;
+}
+
+.title {
+	flex: 3;
+}
+
+.element {
+	flex: 1;
 }
