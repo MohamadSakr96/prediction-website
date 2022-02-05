@@ -8,10 +8,10 @@ async function fetchImage(url) {
     if (data.status === 'success') {
         document.getElementById("image").src = `${data.message}`;
     }else {
+        document.getElementById("image").src = "https://images.dog.ceo/breeds/hound-plott/hhh_plott002.JPG";
         console.log("Failed to load image!");
     }
 }
-
 fetchImage(dog_img_url);
 
 

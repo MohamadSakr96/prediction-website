@@ -23,10 +23,12 @@ body {
 	padding: 4rem 0;
 	border-radius: 20px;
 	box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
 img {
 	border-radius: 20px;
-	width: max(50%, 300px);
-	aspect-ratio: 1;
+	width: clamp(200px, 70%, 400px);
 }
