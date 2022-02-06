@@ -1,9 +1,9 @@
-var data_array = [];
-var render_index = 0;
-
-
-// dog image
+let data_array = [];
+let render_index = 0;
 let dog_img_url = "https://dog.ceo/api/breeds/image/random";
+let input = document.getElementById("name");
+
+
 // async await (for the dog image)
 async function fetchImage(url) {
     let result = await fetch(url);
@@ -17,27 +17,34 @@ async function fetchImage(url) {
 }
 fetchImage(dog_img_url);
 
-document.body.addEventListener("mouseenter", () => {
-    document.getElementById("submit").addEventListener("click", createURL);
+
+
+$(document).ready(() => {
+    $("button").click(createURL);
 });
 
 
 function createURL() {
-    let var_name = document.getElementById("name").value;
-    data_array.push(var_name);
+    let var_name = $("input").val();
+    if (var_name.length > 2) {
+        data_array.push(var_name);
 
-    let gender_url = ` https://api.genderize.io?name=${var_name}`;
-    let age_url = ` https://api.agify.io/?name=${var_name}`;
-    let country_url = ` https://api.nationalize.io/?name=${var_name}`;
+        let gender_url = ` https://api.genderize.io?name=${var_name}`;
+        let age_url = ` https://api.agify.io/?name=${var_name}`;
+        let country_url = ` https://api.nationalize.io/?name=${var_name}`;
 
-    // Promises way of doing things "promise chain"
-    fetchData(gender_url, "gender").then(
-        () => fetchData(age_url, "age")
-    ).then(
-        () => fetchData(country_url, "country")
-    ).then(
-        () => renderData()
-    );
+        
+        $("input").attr("placeholder", "Please Enter a Name").placeholder;
+
+        // Promises way of doing things "promise chain"
+        fetchData(gender_url, "gender")
+        .then(() => fetchData(age_url, "age"))
+        .then(() => fetchData(country_url, "country"))
+        .then(() => renderData());
+
+    }else {
+        $("input").attr("placeholder", "Please Enter a Valid Name").placeholder;
+    }
 }
 
 // async await (best way of doing it?)
@@ -58,7 +65,7 @@ async function fetchData(url, data_type) {
 function renderData() {
     
     if (render_index === 0){
-        document.body.innerHTML += `
+        document.getElementById("load-data").innerHTML += `
             <div id="elements" class="container data-container">
                 <div class="elements title-container">
                     <div class="element">Name</div>
