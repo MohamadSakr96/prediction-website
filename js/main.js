@@ -27,6 +27,9 @@ $(document).ready(() => {
 function createURL() {
     let var_name = $("input").val();
     if (var_name.length > 2) {
+        // to prevent the user from spamming the button
+        $("button").attr("disabled", true);
+        
         data_array.push(var_name);
 
         let gender_url = ` https://api.genderize.io?name=${var_name}`;
@@ -41,7 +44,6 @@ function createURL() {
         .then(() => fetchData(age_url, "age"))
         .then(() => fetchData(country_url, "country"))
         .then(() => renderData());
-
     }else {
         $("input").attr("placeholder", "Please Enter a Valid Name").placeholder;
     }
@@ -90,7 +92,12 @@ function renderData() {
         }
     );
     render_index ++;
+    resetData();
+}
+
+function resetData() {
     data_array = [];
+    $("button").removeAttr("disabled");
 }
 
 
