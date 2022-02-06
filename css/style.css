@@ -117,6 +117,14 @@ button:hover {
 	flex: 1;
 }
 
+.border-right {
+	border-right: 1px dashed var(--color-light);
+}
+
+.border-left {
+	border-left: 1px dashed var(--color-light);
+}
+
 @media screen and (max-width: 798px) {
 	.container {
 		margin: 2rem 0;

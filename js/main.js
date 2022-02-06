@@ -78,10 +78,10 @@ function renderData() {
         document.getElementById("load-data").innerHTML += `
             <div id="elements" class="container data-container">
                 <div class="elements title-container">
-                    <div class="flex-1">Name</div>
-                    <div class="flex-1">Gender</div>
-                    <div class="flex-1">Age</div>
-                    <div class="flex-3">Nationality</div>
+                    <div class="flex-1 border-right">Name</div>
+                    <div class="flex-1 border-left border-right">Gender</div>
+                    <div class="flex-1 border-left border-right">Age</div>
+                    <div class="flex-3 border-left">Nationality</div>
                 </div>
             </div>
         `;
