@@ -26,6 +26,7 @@ $(document).ready(() => {
 
 function createURL() {
     let var_name = $("input").val();
+    $("input").val('');
     if (var_name.length > 2) {
         // to prevent the user from spamming the button
         $("button").attr("disabled", true);
@@ -43,7 +44,7 @@ function createURL() {
         fetchData(gender_url, "gender")
         .then(() => fetchData(age_url, "age"))
         .then(() => fetchData(country_url, "country"))
-        .then(() => renderData());
+        .then(() => checkData());
     }else {
         $("input").attr("placeholder", "Please Enter a Valid Name").placeholder;
     }
@@ -63,9 +64,17 @@ async function fetchData(url, data_type) {
     }
 }
 
+// this function is to check if there we received data 
+function checkData() {
+    if (data_array.length < 2) {
+        $("input").attr("placeholder", "Please Enter a Valid Name").placeholder;
+        resetData();
+    }else {
+        renderData();
+    }
+}
 
 function renderData() {
-    
     if (render_index === 0){
         document.getElementById("load-data").innerHTML += `
             <div id="elements" class="container data-container">
