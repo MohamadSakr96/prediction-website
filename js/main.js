@@ -15,11 +15,9 @@ async function fetchImage(url) {
         console.log("Failed to load image!");
     }
 }
-fetchImage(dog_img_url);
-
-
 
 $(document).ready(() => {
+    fetchImage(dog_img_url);
     $("button").click(createURL);
 });
 
@@ -28,7 +26,7 @@ function createURL() {
     let var_name = $("input").val();
     $("input").val('');
     if (var_name.length > 2) {
-        // to prevent the user from spamming the button
+        // to prevent the user from spamming the button (and load the array with unwanted data)
         $("button").attr("disabled", true);
         
         data_array.push(var_name);
@@ -75,35 +73,37 @@ function checkData() {
 }
 
 function renderData() {
+    // First render will create the container (we only want 1 container)
     if (render_index === 0){
         document.getElementById("load-data").innerHTML += `
             <div id="elements" class="container data-container">
                 <div class="elements title-container">
-                    <div class="element">Name</div>
-                    <div class="element">Gender</div>
-                    <div class="element">Age</div>
-                    <div class="title">Nationality</div>
+                    <div class="flex-1">Name</div>
+                    <div class="flex-1">Gender</div>
+                    <div class="flex-1">Age</div>
+                    <div class="flex-3">Nationality</div>
                 </div>
             </div>
         `;
     }
+    // This div will hold all the data from current data_array
     document.getElementById(`elements`).innerHTML += `
         <div id="elements_${render_index}" class="elements">
             
         </div>
     `;
-
+    // to load all the data inside its corresponding div 
     data_array.forEach(
         (element) => { 
             document.getElementById(`elements_${render_index}`).innerHTML += `
-                <div class="element"> ${element} </div>
+                <div class="flex-1"> ${element} </div>
             `;
         }
     );
     render_index ++;
     resetData();
 }
-
+// To reset the array so we can add other names 
 function resetData() {
     data_array = [];
     $("button").removeAttr("disabled");

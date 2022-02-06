@@ -109,11 +109,11 @@ button:hover {
 	font-weight: bold;
 }
 
-.title {
+.flex-3 {
 	flex: 3;
 }
 
-.element {
+.flex-1 {
 	flex: 1;
 }
 
